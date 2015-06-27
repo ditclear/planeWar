@@ -1,6 +1,7 @@
 package com.game;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Rectangle;
 import java.util.Random;
 
@@ -16,7 +17,6 @@ public class Bullet {
 	double ¦Ð = Math.PI;
 	Random ran = new Random();
 	double delta;
-	
 	public Bullet(boolean alive, GameStart gs) {
 		super();
 		this.x = gs.plane.x + 44;
@@ -35,7 +35,7 @@ public class Bullet {
 	}
 
 	public void drawMe(Graphics g) {
-		g.drawImage(gs.bulletImg, x, y, width, height, null);
+		g.drawImage(gs.bulletImgs[0], x, y, width, height, null);
 		move();
 	}
 

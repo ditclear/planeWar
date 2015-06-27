@@ -44,13 +44,22 @@ public class Plane {
 				lives[i]=new LifePlane(index, 40, gs, true);
 				index+=30;
 			}
+			if(canK){
+				g.drawImage(gs.foodImgs[1], 20, 620, 29, 26, null);
+			}
+			if (canL) {
+				g.drawImage(gs.foodImgs[0], 60, 620, 29, 26, null);
+			}
+			if (canK&&canL) {
+				g.drawString("大招准备就绪", 20, 600);
+			}
 			g.drawImage(gs.planeImg, x, y, width, height, null);
 		}else {
 			if(isFirst){
 				g.drawImage(gs.startImg, 0, 0, 600, 700, null);
 				return;
 			}
-			g.drawImage(gs.continueImg, 225, gs.height/2, 150, 45, null);
+			g.drawImage(gs.continueImg, 150,250, 300, 200, null);
 		}
 		
 		System.out.println("前：" + bullets.size());

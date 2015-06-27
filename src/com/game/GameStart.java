@@ -34,10 +34,11 @@ public class GameStart extends Frame {
 	public List<BulletEm> bulletEms = new ArrayList<BulletEm>();
 	List<Explode> explodes = new ArrayList<Explode>();
 	List<Food> foods = new ArrayList<Food>();
-	Image img, bgImg, bulletImg, planeImg, bulletEmImg, bulletEm1Img, boosImg,
-			ult, continueImg, lifePlane, startImg, overImg;
-	Image[] enemyImgs, boomImgs, bulletBossImgs, foodImgs;
+	Image img, bulletImg,bgImg, planeImg, bulletEmImg, bulletEm1Img, boosImg,
+			ult, continueImg, lifePlane, startImg;
+	Image[]  bulletImgs,enemyImgs, boomImgs, bulletBossImgs, foodImgs;
 	public GameStart() {
+		this.setTitle("飞机大战");
 		this.setSize(width, height);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -110,8 +111,10 @@ public class GameStart extends Frame {
 				toolkit.getImage(GameStart.class.getResource("/imgs/21.png")),
 				toolkit.getImage(GameStart.class.getResource("/imgs/15.png")),
 				toolkit.getImage(GameStart.class.getResource("/imgs/敌机2.png")) };
-		bulletImg = toolkit.getImage(GameStart.class
-				.getResource("/imgs/子弹1.png"));
+		bulletImgs = new Image[] {
+				toolkit.getImage(GameStart.class.getResource("/imgs/子弹1.png")),
+				toolkit.getImage(GameStart.class.getResource("/imgs/坦克.png"))
+				};
 		bulletEmImg = toolkit.getImage(GameStart.class
 				.getResource("/imgs/敌军子弹.png"));
 		bulletEm1Img = toolkit.getImage(GameStart.class
@@ -124,10 +127,7 @@ public class GameStart extends Frame {
 				toolkit.getImage(GameStart.class.getResource("/imgs/子弹2.png")) };
 		ult = toolkit.getImage(GameStart.class.getResource("/imgs/BKILL.png"));
 		continueImg = toolkit.getImage(GameStart.class
-				.getResource("/imgs/13.png"));
-
-		overImg = toolkit.getImage(GameStart.class
-				.getResource("/imgs/fails1.png"));
+				.getResource("/imgs/continue.png"));
 		foodImgs = new Image[] {
 				toolkit.getImage(GameStart.class.getResource("/imgs/食物1.jpg")),
 				toolkit.getImage(GameStart.class.getResource("/imgs/22.png")) };
@@ -180,7 +180,7 @@ public class GameStart extends Frame {
 				enemies.add(new Enemy(ran.nextInt(500) + 10, 0, true,
 						GameStart.this));
 			}
-			if (foods.size() <1&&count==10) {
+			if (foods.size() <3&&count==5) {
 				foods.add(new Food(ran.nextInt(500) + 10, 0, GameStart.this,
 						true));
 			}
@@ -222,6 +222,9 @@ public class GameStart extends Frame {
 			if (count >= bossTime) {
 				boss.alive=true;
 				boss.drawMe(g);
+			}else if (bossTime-count<=3) {
+				g.setColor(Color.RED);
+				g.drawString("WARNNING", 250, 100);
 			}
 			g.drawString("第"+level+"关", 500, 50);
 			g.drawString("得分：" + score, 500, 80);

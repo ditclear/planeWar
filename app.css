@@ -1,0 +1,26 @@
+.banner {
+  position: relative;
+  overflow: hidden;
+}
+
+.placeholder {
+  padding-bottom: 66.6%;
+}
+
+img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 1s linear;
+}
+
+img.loaded {
+  opacity: 1;
+}
+
+.img-small {
+  filter: blur(50px);
+  -webkit-filter: blur(50px);
+}
